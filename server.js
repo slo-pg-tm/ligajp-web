@@ -48,6 +48,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+app.get('/ligaadmin', (req, res) => {
+  res.sendFile(path.join(__dirname + '/admin.html'));
+});
+
 app.get('/recalc/:year', (req, res) => {
   const year = req.params.year
   recalculateResults(path.join(dataDir, ''+year), dataDir, year);
