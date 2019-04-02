@@ -10,6 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-fileupload": "^1.1.4",
+    "lodash": "^4.17.11",
+    "mkdirp": "^0.5.1",
+    "slo-league": "github:primozs/slo-league"
   }
 }

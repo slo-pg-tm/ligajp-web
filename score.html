@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="sl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Slovenska Jadralno padalska liga ${ year }</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        th,
+        td {
+            padding: 0 8px;
+            text-align: left;
+        }
+        
+        .discarded {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1 class="header">Slovenska Jadralno padalska liga ${ year }</h1>
+        <h2 class="organizer">Letalska Zveza Slovenije</h2>
+        <table>
+            <% _.forEach(compsData, function(comp) { %><tr><td><%- comp.name %></td><td><%- comp.location %></td></tr><% }); %>
+        </table>
+        <h3>Rezultati:</h3>
+        <div style="overflow-x:auto">
+            <table>
+                <thead>
+                    <tr>
+                        <th> </th>
+                        <th>Pilot</th>
+                        <th>Glider</th>
+                        <% _.forEach(ligaData[0].allTasks, function(task, index) { %><th>T<%- (index+1) %></th><% }); %>
+                        <th>Točke</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <% _.forEach(ligaData, function(pilot, index) { %><tr><td><%- (index+1) %></td><td><%- pilot.name %></td><td><%- pilot.glider %></td><% _.forEach(pilot.allTasks, function(score, index) { %><% if (index >= discardFrom) { %> <td class="discarded"> <% } else {%><td><%}%> <%- score %></td><% }); %><td><%- pilot.sumPoints %></td></tr><% }); %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

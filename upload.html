@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <title>Jadralno padalska liga</title>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <style>
+      body { 
+        text-align: center;
+      }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <h3>Slovenska Jadralno padalska liga</h3>
+      <div class="row">
+        <div class="col-sm-9 offset-sm-3 text-center">
+          <form action="/upload" method="POST" class="form-inline" encType="multipart/form-data">
+            <div class="form-group">
+              <label for="fsdbFile">Izberi FSDB datoteko:</label>
+              <input type="file" class="form-control-file" name="fsdbFile" id="fsdbFile">
+            </div>
+            <div class="form-group">
+              <button type="submit">Naloži rezultate</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
