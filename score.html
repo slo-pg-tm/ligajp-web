@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Slovenska Jadralno Padalska Liga ${ year }</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -22,29 +23,60 @@
             text-decoration: line-through;
         }
     </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 <body>
     <div id="app">
         <h1 class="header">Slovenska Jadralno Padalska Liga ${ year }</h1>
         <h2 class="organizer">Letalska Zveza Slovenije</h2>
-        <table>
-            <% _.forEach(compsData, function(comp) { %><tr><td><%- comp.name %></td><td><%- comp.location %></td></tr><% }); %>
-        </table>
-        <h3>Rezultati:</h3>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <a href="https://www.nova.eu/si/domaca-stran/" targer="_blank"><img class="main_sp" src="/imgs/nova.svg"></a>
+            </div>
+            <div class="col-6">
+              <a href="https://www.naviter.com/" targer="_blank"><img class="main_sp" src="/imgs/naviter.svg"></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 col-md-3">
+              <a href="https://777gliders.com/" targer="_blank"><img class="small_sp" src="/imgs/777.svg"></a>
+            </div>
+            <div class="col-6 col-md-3">
+              <a href="https://www.macpara.com/en/mac-para/" targer="_blank"><img class="small_sp" src="/imgs/macpara.svg"></a>
+            </div>
+            <div class="col-6 col-md-3">
+              <a href="http://www.lzs-zveza.si/" targer="_blank"><img class="small_sp" src="/imgs/lzs.svg"></a>
+            </div>
+            <div class="col-6 col-md-3">
+              <a href="http://www.condorsoaring.com/" targer="_blank"><img class="small_sp" src="/imgs/condor.png" alt="condorsoaring"></a>
+            </div>
+          </div>
+        </div> 
+        <hr/>        
+        <table border="1">
+          <thead>
+            <tr><th>Tekma</th><th>Lokacija</th></tr>
+          </thead>
+          <tbody>
+            <% _.forEach(compsData, function(comp) { %><tr><td><%- comp.competition.name %></td><td><%- comp.competition.location %></td></tr><% }); %>
+          </tbody>          
+        </table>        
+        <h3>Rezultati</h3>
         <div style="overflow-x:auto">
-            <table>
+            <table class="scrollable">                
                 <thead>
                     <tr>
                         <th> </th>
                         <th>Pilot</th>
-                        <th>Glider</th>
+                        <th>Padalo</th>
                         <% _.forEach(ligaData[0].allTasks, function(task, index) { %><th>T<%- (index+1) %></th><% }); %>
                         <th>Točke</th>
                     </tr>
                 </thead>
                 <tbody>
-                  <% _.forEach(ligaData, function(pilot, index) { %><tr><td><%- (index+1) %></td><td><%- pilot.name %></td><td><%- pilot.glider %></td><% _.forEach(pilot.allTasks, function(score, index) { %><% if (index >= discardFrom) { %> <td class="discarded"> <% } else {%><td><%}%> <%- score %></td><% }); %><td><%- pilot.sumPoints %></td></tr><% }); %>
+                  <% _.forEach(ligaData, function(pilot, index) { %><tr><td><%- (index+1) %></td><td data-label="Pilot"><%- pilot.name %></td><td data-label="Padalo"><%- pilot.glider %></td><% _.forEach(pilot.allTasks, function(score, index) { %><% if (index >= discardFrom) { %> <td data-label="T<%- (index+1) %>" class="discarded"> <% } else {%><td data-label="T<%- (index+1) %>"><%}%> <%- score %></td><% }); %><td data-label="Točke"><%- pilot.sumPoints %></td></tr><% }); %>
                 </tbody>
             </table>
         </div>
