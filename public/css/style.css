@@ -64,6 +64,10 @@ table.results  tr.head:hover {
           background-color: #fff;
 }
 
+tr:hover {
+  background: yellow;
+}
+
 /* ----------------------------------- */
 .main_sp {
   width: 240px;
